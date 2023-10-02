@@ -1,90 +1,88 @@
-import { View, Text, StyleSheet, StatusBar, Image, Pressable, KeyboardAvoidingView, TextInput } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, Image, Pressable, KeyboardAvoidingView, TextInput, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import ReusableButton from '../components/ReusableButton';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function RegisterScreen({ navigation }: any) {
-    const [userCred, setUserCred] = useState({ email: "", name: "",password: "", });
-    const onLoginPress = () => {
+    const [userCred, setUserCred] = useState({ email: "", name: "", password: "", });
+    const onRegisterPress = () => {
         console.warn("Hello there");
     }
     return (
         <View style={styles.container}>
-            <View style={{ marginTop: 50 }}>
-                <Image source={{ uri: "https://assets.stickpng.com/thumbs/6160562276000b00045a7d97.png" }} style={{ width: 150, height: 100 }} />
-            </View>
-            <KeyboardAvoidingView>
-                <View style={{ alignItems: "center" }}>
-                    <Text style={styles.titleText}>
-                        Create a new Account
-                    </Text>
+            <ScrollView>
+                <View style={{ marginTop: 50 }}>
+                    <Image source={{ uri: "https://assets.stickpng.com/thumbs/6160562276000b00045a7d97.png" }} style={{ width: 150, height: 100 }} />
                 </View>
-                {/* Email Input */}
-                <View style={{ marginTop: 70 }}>
-                    <View style={styles.inputField}>
-                        <MaterialIcons
-                            name="email"
-                            size={24}
-                            color="gray"
-                            style={styles.icon}
-                        />
-                        <TextInput
-                            value={userCred.email}
-                            onChangeText={(newValue) => setUserCred({ ...userCred, email: newValue })}
-                            style={styles.inputText}
-                            placeholder='Enter your email'
-                        />
+                <KeyboardAvoidingView>
+                    <View style={{ alignItems: "center" }}>
+                        <Text style={styles.titleText}>
+                            Create a new Account
+                        </Text>
                     </View>
-                </View>
-                 {/* Name Input */}
-                <View style={{ marginTop: 10 }}>
-                    <View style={styles.inputField}>
-                        <MaterialIcons
-                            name="email"
-                            size={24}
-                            color="gray"
-                            style={styles.icon}
-                        />
-                        <TextInput
-                            value={userCred.name}
-                            onChangeText={(newValue) => setUserCred({ ...userCred, name: newValue })}
-                            style={styles.inputText}
-                            placeholder='Enter your name'
-                        />
+                    {/* Email Input */}
+                    <View style={{ marginTop: 70 }}>
+                        <View style={styles.inputField}>
+                            <MaterialIcons
+                                name="email"
+                                size={24}
+                                color="gray"
+                                style={styles.icon}
+                            />
+                            <TextInput
+                                value={userCred.email}
+                                onChangeText={(newValue) => setUserCred({ ...userCred, email: newValue })}
+                                style={styles.inputText}
+                                placeholder='Enter your email'
+                            />
+                        </View>
                     </View>
-                </View>
-                {/* Password Input */}
-                <View style={{ marginTop: 10 }}>
-                    <View style={styles.inputField}>
-                        <AntDesign
-                            name="lock"
-                            size={24}
-                            color="black"
-                            style={styles.icon}
-                        />
-                        <TextInput
-                            value={userCred.password}
-                            onChangeText={(newValue) => setUserCred({ ...userCred, password: newValue })}
-                            style={styles.inputText}
-                            placeholder='Enter password'
-                        />
+                    {/* Name Input */}
+                    <View style={{ marginTop: 10 }}>
+                        <View style={styles.inputField}>
+                            <Ionicons name="person" size={24} color="gray" style={styles.icon} />
+                            <TextInput
+                                value={userCred.name}
+                                onChangeText={(newValue) => setUserCred({ ...userCred, name: newValue })}
+                                style={styles.inputText}
+                                placeholder='Enter your name'
+                            />
+                        </View>
                     </View>
-                </View>
-                <View style={styles.mis}>
-                    <Text>Keep me Logged in</Text>
-                    <Text style={styles.forgotP}>Forgot Password</Text>
-                </View>
+                    {/* Password Input */}
+                    <View style={{ marginTop: 10 }}>
+                        <View style={styles.inputField}>
+                            <AntDesign
+                                name="lock"
+                                size={24}
+                                color="black"
+                                style={styles.icon}
+                            />
+                            <TextInput
+                                secureTextEntry={true}
+                                value={userCred.password}
+                                onChangeText={(newValue) => setUserCred({ ...userCred, password: newValue })}
+                                style={styles.inputText}
+                                placeholder='Enter password'
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.mis}>
+                        <Text>Keep me Logged in</Text>
+                        <Text style={styles.forgotP}>Forgot Password</Text>
+                    </View>
 
-                <View style={{ marginTop: 50 }} />
+                    <View style={{ marginTop: 50 }} />
 
-                <ReusableButton onButtonPress={onLoginPress} btnText="Register"/>
+                    <ReusableButton onButtonPress={onRegisterPress} btnText="Register" />
 
-                <Pressable style={{ marginTop: 15 }} onPress={() => navigation.navigate("Register")}>
-                    <Text style={{ textAlign: "center", color: "gray", fontSize: 16 }}>Already have an account? Sign In</Text>
-                </Pressable>
-            </KeyboardAvoidingView>
-
+                    <Pressable style={{ marginTop: 15 }} onPress={() => navigation.navigate("Register")}>
+                        <Text style={{ textAlign: "center", color: "gray", fontSize: 16 }}>Already have an account? Sign In</Text>
+                    </Pressable>
+                </KeyboardAvoidingView>
+            </ScrollView>
         </View>
     )
 }
